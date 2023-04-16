@@ -1,0 +1,46 @@
+ARG VERSION=3.7
+FROM python:${VERSION}-bullseye
+
+ARG NAME=whome
+ARG UID=1000
+
+# Note that any deps installed here must also be installed in the
+# github actions workflows:
+#
+#      .github/workflows/python-package.yml
+#      .github/workflows/python-publish.yml
+#
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update \
+  && apt-get upgrade -y --no-install-recommends \
+  && apt-get install -y --fix-missing \
+         libenchant-2-2 \
+         pandoc \
+  && apt-get autoremove \
+  && apt-get autoclean \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV USER=builder
+ENV HOME=/home/${USER}
+ENV PATH=${HOME}/bin:${HOME}/.local/bin:${PATH}
+ENV PYTHONPATH=${HOME}/${NAME}:${PYTHONPATH}
+RUN useradd --uid ${UID} \
+            --user-group \
+            --shell /bin/bash \
+            -m \
+            -d ${HOME} \
+            --no-log-init \
+            builder
+
+USER builder
+WORKDIR ${HOME}/${NAME}
+RUN mkdir ~/bin \
+  && curl --proto '=https' \
+          --tlsv1.2 \
+          -sSf https://just.systems/install.sh | bash -s -- --to ${HOME}/bin
+COPY requirements.txt ./
+RUN python3 -m pip install --force-reinstall --user -r requirements.txt \
+  && rm -f requirements.txt
+

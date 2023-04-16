@@ -4,9 +4,10 @@ CV in reStructured text
 
 # Initialisation
 
-This repo requires python3 and the 'just' command.
+This repo requires docker, python3 and the 'just' command as dependencies.
+Additionally all changes are generated in a docker image which has to be built.
 
-Ensure that the local bin directory exisats and is added to the path:
+Ensure that the local bin directory exists and is added to the path:
 
 ```bash
 ls -l ~/bin   # should not error
@@ -21,11 +22,17 @@ python3 --version
 
 should return the version of python3 installed.
 
+## docker
+
+Install docker locally by following one of these links:
+
+     https://docs.docker.com/engine/install/debian/
+
 ## just
 
 https://github.com/casey/just
 
-which can be installed by executimng:
+which can be installed by executing:
 
 ```bash
 export BIN="~/bin"
@@ -40,5 +47,13 @@ just --help    # should return the help message
 just           # will return the output of the first entry in the justfile
 ```
 
+## create the builder image
+
+Create the docker image and test that one can shell into the build envirnment:
+
+```bash
+just builder
+just shell
+```
 
 
