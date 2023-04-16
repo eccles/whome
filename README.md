@@ -39,7 +39,7 @@ export BIN="~/bin"
 curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ${BIN}
 ```
 
-and then checking that just is available:
+and then checking that 'just' is available:
 
 ```bash
 which just     # should return ~/bin/just
@@ -49,11 +49,21 @@ just           # will return the output of the first entry in the justfile
 
 ## create the builder image
 
-Create the docker image and test that one can shell into the build envirnment:
+Create the docker image and test that one can shell into the build environment:
 
 ```bash
 just builder
 just shell
 ```
 
+# Development
+
+After creating the build environment one can edit the files.
+
+To generate the html output:
+
+
+```bash
+just doc
+```
 
