@@ -21,3 +21,7 @@ builder pyversion="3.7":
 shell:
 	./scripts/builder.sh /bin/bash
 
+# create doc
+doc:
+	./scripts/builder.sh /bin/bash -c "cd doc && make clean && make html"
+
