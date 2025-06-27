@@ -6,8 +6,8 @@ name := "whome"
 default:
 	@just --list
 
-# Rcreate build environment in docker image
-builder pyversion="3.7":
+# Recreate build environment in docker image
+builder pyversion="3.12":
 	#!/usr/bin/env bash
 	docker build \
 	       --build-arg VERSION="{{pyversion}}" \

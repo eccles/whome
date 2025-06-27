@@ -3,18 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to whome's documentation!
-=================================
+Welcome to Eccles's documentation!
+==================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
+   backups/README
+   baremetal/README
+   btrfs/README
+   macbookPro/README
+   private-github/README
+   proxmox/README
+   smart-home-server/README
+   zed/README
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

@@ -1,0 +1,8 @@
+[Unit]
+Description=Makes backup of /data
+RequiresMountsFor=/data
+ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStart=/root/bin/backups.sh

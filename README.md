@@ -26,9 +26,19 @@ should return the version of python3 installed.
 
 Install docker locally by following one of these links:
 
-     https://docs.docker.com/engine/install/debian/
+```bash
+./scripts/install-docker.sh
+```
 
 ## just
+
+If using asdf just type 
+
+```bash
+asdf install
+```
+
+Otherwise refer to
 
 https://github.com/casey/just
 
@@ -42,7 +52,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -
 and then checking that 'just' is available:
 
 ```bash
-which just     # should return ~/bin/just
+which just     # should return a patyh to tyhe just executable.
 just --help    # should return the help message
 just           # will return the output of the first entry in the justfile
 ```

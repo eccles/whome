@@ -1,0 +1,45 @@
+# This workflow will upload a Python Package using a release environment and a trusted publisher.
+# See PyPi management in the datatrails confluence service for an explanation.
+#
+# Create a trusted publisher for datatrails-python in pypi.org and delete any API tokens.
+# In github add an environment called release that is restricted to the main branch and
+# delete any PYPI secrets.
+
+name: ci
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  QA:
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: write # This is required for actions/checkout and actions-gh-pages
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: Setup ASDF VM
+      uses: asdf-vm/actions/install@v4
+    - name: builder
+      run: just builder
+      shell: bash
+    - name: Build docs
+      run: just doc
+
+#    - name: Publish docs
+#     uses: peaceiris/actions-gh-pages@v4
+#     with:
+#       github_token: ${{ secrets.GITHUB_TOKEN }}
+#       publish_dir: "./doc/_build/html"
