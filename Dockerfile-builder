@@ -10,7 +10,7 @@ ARG UID=1000
 #      .github/workflows/python-package.yml
 #      .github/workflows/python-publish.yml
 #
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get upgrade -y --no-install-recommends \
@@ -25,7 +25,7 @@ RUN apt-get update \
 ENV USER=builder
 ENV HOME=/home/${USER}
 ENV PATH=${HOME}/bin:${HOME}/.local/bin:${PATH}
-ENV PYTHONPATH=${HOME}/${NAME}:${PYTHONPATH}
+ENV PYTHONPATH=${HOME}/${NAME}
 RUN useradd --uid ${UID} \
             --user-group \
             --shell /bin/bash \

@@ -1,6 +1,6 @@
 #
-sphinx~=5.3
-sphinx-rtd-theme~=1.1
-sphinxcontrib-spelling~=7.7
-sphinx-gallery~=0.11
-nbsphinx~=0.8
+sphinx~=8.2
+sphinx-rtd-theme~=3.0
+sphinxcontrib-spelling~=8.0
+sphinx-gallery~=0.19
+myst-parser[linkify]~=4.0
