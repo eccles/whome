@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Eccles'
-copyright = '2023, Paul Hewlett'
+copyright = '2025, Paul Hewlett'
 author = 'Paul Hewlett'
 release = '0.1.0'
 
