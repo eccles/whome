@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessing private github golang repos &mdash; Eccles 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Proxmox" href="../proxmox/README.html" />
+    <link rel="prev" title="Installing Linux on Macbook Pro" href="../macbookPro/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../backups/README.html">Backups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../baremetal/README.html">Bare Metal Installation Fedora Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../btrfs/README.html">Notes on btrfs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../macbookPro/README.html">Installing Linux on Macbook Pro</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accessing private github golang repos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proxmox/README.html">Proxmox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smart-home-server/README.html">Smart home server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zed/README.html">zed editor</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Eccles</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Accessing private github golang repos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/private-github/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="accessing-private-github-golang-repos">
+<h1>Accessing private github golang repos<a class="headerlink" href="#accessing-private-github-golang-repos" title="Link to this heading"></a></h1>
+<p>If you want to access github private repos without hassle then please try the following:</p>
+<p>install git-credential-manager:  <a class="reference external" href="https://github.com/git-ecosystem/git-credential-manager">https://github.com/git-ecosystem/git-credential-manager</a></p>
+<ul>
+<li><p>extract the executable and copy to your path</p>
+<p>The tarball contains:</p>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">git</span><span class="o">-</span><span class="n">credential</span><span class="o">-</span><span class="n">manager</span>  <span class="n">libHarfBuzzSharp</span><span class="o">.</span><span class="n">so</span>  <span class="n">libSkiaSharp</span><span class="o">.</span><span class="n">so</span>  <span class="n">NOTICE</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span>mkdir<span class="w"> </span>~/bin/gcm
+<span class="w">        </span>cp<span class="w"> </span>*<span class="w"> </span>~/bin/gcm
+<span class="w">        </span>chmod<span class="w"> </span>+x<span class="w"> </span>~/bin/gcm/git-credential-maneger
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>configure:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span>~/bin/gcm/git-credential-manager<span class="w"> </span>configure
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>check ~/.gitconfig:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="p">[</span><span class="n">credential</span><span class="p">]</span>
+        <span class="n">helper</span> <span class="o">=</span> 
+        <span class="n">helper</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">eccles</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">git</span><span class="o">-</span><span class="n">credential</span><span class="o">-</span><span class="n">manager</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>also delete any ‘insteadOf entries - they are not required.</p></li>
+<li><p>now check out a repo using HTTPS. This is required because that is what ‘go get’ uses.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="c1"># there are more options available - lets just use RAM...</span>
+<span class="w">        </span><span class="nb">export</span><span class="w"> </span><span class="nv">GCM_CREDENTIAL_STORE</span><span class="o">=</span>cache<span class="w"> </span>
+<span class="w">        </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/eccles/hestia.git
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A browser window should appear - choose accordingly.
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!NOTE]
+This is an official Microsoft product which is available for all platforms.</p>
+</div></blockquote>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../macbookPro/README.html" class="btn btn-neutral float-left" title="Installing Linux on Macbook Pro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../proxmox/README.html" class="btn btn-neutral float-right" title="Proxmox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Paul Hewlett.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

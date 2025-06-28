@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backups &mdash; Eccles 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bare Metal Installation Fedora Server" href="../baremetal/README.html" />
+    <link rel="prev" title="Welcome to Eccles’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Backups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-the-external-disk">Prepare the external disk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-cryptsetup">Using cryptsetup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#system-configuration">System configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mount-and-unmount-external-drive">Mount and unmount external drive.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-the-backup-script-working">Get the backup script working.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-backups-to-systemd">Add backups to systemd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../baremetal/README.html">Bare Metal Installation Fedora Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../btrfs/README.html">Notes on btrfs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../macbookPro/README.html">Installing Linux on Macbook Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../private-github/README.html">Accessing private github golang repos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proxmox/README.html">Proxmox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../smart-home-server/README.html">Smart home server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zed/README.html">zed editor</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Eccles</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Backups</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/backups/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="backups">
+<h1>Backups<a class="headerlink" href="#backups" title="Link to this heading"></a></h1>
+<p>This directory contains the necessary files to configure external
+backup disks that regularly backup the main storage filesytem
+to an external USB disk.</p>
+<p>The external backup disk has an encrypted partition that has a LABELLED filesystem.
+The label is ‘Backup’.</p>
+<p>The drive is mounted and unmounted on the /Backup mount point which must be created
+manually when setting this up.</p>
+<p>These notes are rudimentary - you must have previous expertise and take care…</p>
+<section id="prepare-the-external-disk">
+<h2>Prepare the external disk<a class="headerlink" href="#prepare-the-external-disk" title="Link to this heading"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- create one partition on the external disk using fdisk utility. 
+- note that it is possible to use the block device directly without
+  creating a partition.
+- alternatively use GNOME disks utility to encrypt and partition disk.
+</pre></div>
+</div>
+<section id="using-cryptsetup">
+<h3>Using cryptsetup<a class="headerlink" href="#using-cryptsetup" title="Link to this heading"></a></h3>
+<p>$DEV will typically be /dev/sdc or /dev/sdc1
+As sudo execute:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- sudo cryptsetup -v --verify-passphrase luksFormat $DEV   # Answer YES in CAPITAL
+- sudo cryptsetup luksOpen $DEV backup
+- sudo mkfs.xfs -L Backup /dev/mapper/backup
+- sudo cryptsetup luksClose /dev/mapper/backup
+</pre></div>
+</div>
+</section>
+</section>
+<section id="system-configuration">
+<h2>System configuration<a class="headerlink" href="#system-configuration" title="Link to this heading"></a></h2>
+<section id="mount-and-unmount-external-drive">
+<h3>Mount and unmount external drive.<a class="headerlink" href="#mount-and-unmount-external-drive" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>UUID=$(blkid $DEV | cut -d&#39; &#39; -f2 | cut -d&#39;&quot;&#39; -f2)
+</pre></div>
+</div>
+<p>gives (for example).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b0aced4a</span><span class="o">-</span><span class="mi">0</span><span class="n">bd6</span><span class="o">-</span><span class="mi">4560</span><span class="o">-</span><span class="n">bc06</span><span class="o">-</span><span class="mi">3323</span><span class="n">fdca529d</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Create the necessary files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;luks-</span><span class="nv">$UUID</span><span class="s2"> UUID=</span><span class="nv">$UUID</span><span class="s2"> /etc/luks-keys/</span><span class="nv">$UUID</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/crypttab
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/luks-keys/<span class="nv">$UUID</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;LABEL=Backup /Backup auto noauto,x-cockpit-never-auto 0 0&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/fstab
+mkdir<span class="w"> </span>/Backup
+</pre></div>
+</div>
+<p>Reload systemd:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>daemon-reload
+</pre></div>
+</div>
+<p>Check all files touched do not have duplicate entries.</p>
+<p>Test that mounting works without requiring passphrase and create rsync directory…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>/Backup
+sudo<span class="w"> </span>mkdir<span class="w"> </span>/Backup/rsync
+sudo<span class="w"> </span>umount<span class="w"> </span>/Backup
+</pre></div>
+</div>
+</section>
+<section id="get-the-backup-script-working">
+<h3>Get the backup script working.<a class="headerlink" href="#get-the-backup-script-working" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/root/bin
+sudo<span class="w"> </span>cp<span class="w"> </span>backups.sh<span class="w"> </span>/root/bin/backups.sh
+sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w">  </span>/root/bin/backups.sh
+</pre></div>
+</div>
+<p>Edit <a class="reference external" href="http://backups.sh">backups.sh</a> script and change SOURCE_DIRS if necessary</p>
+<p>Enter super user mode</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>su<span class="w"> </span>-
+</pre></div>
+</div>
+<p>Make sure external disk is unmounted.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>umount<span class="w"> </span>/Backup
+</pre></div>
+</div>
+<p>Execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>backups.sh
+</pre></div>
+</div>
+<p>This might take a while as this will do a full backup.</p>
+<p>Check that the external drive is mounted and unmounted successfully.</p>
+<p>Repeat</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>backups.sh
+</pre></div>
+</div>
+<p>This second attempt should be musch quicker.</p>
+<p>Check that /Backup is unmounted after execution finishes.</p>
+<p>Check that the expected directories are created:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>backups.sh<span class="w"> </span>list
+</pre></div>
+</div>
+<p>should emit something similar to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="mi">0</span>
+<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">3</span> <span class="n">root</span> <span class="n">root</span> <span class="mi">18</span> <span class="n">Nov</span>  <span class="mi">5</span> <span class="mi">12</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2023</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">05</span><span class="n">T12</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">15</span>
+<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">3</span> <span class="n">root</span> <span class="n">root</span> <span class="mi">18</span> <span class="n">Nov</span>  <span class="mi">5</span> <span class="mi">12</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2023</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">05</span><span class="n">T13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">15</span>
+</pre></div>
+</div>
+</section>
+<section id="add-backups-to-systemd">
+<h3>Add backups to systemd<a class="headerlink" href="#add-backups-to-systemd" title="Link to this heading"></a></h3>
+<p>copy the 2 files to systemd</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>systemd<span class="w"> </span>/etc/
+</pre></div>
+</div>
+<p>and enable the backup service</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>/etc/systemd/system/backups.service
+...<span class="w"> </span>Created<span class="w"> </span>symlink<span class="w"> </span>/etc/systemd/system/multi-user.target.wants/backups.service<span class="w"> </span>→<span class="w"> </span>/etc/systemd/system/backups.service.
+</pre></div>
+</div>
+<p>and timer:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>/etc/systemd/system/backups.timer
+...<span class="w"> </span>Created<span class="w"> </span>symlink<span class="w"> </span>/etc/systemd/system/timers.target.wants/backups.timer<span class="w"> </span>→<span class="w"> </span>/etc/systemd/system/backups.timer.
+</pre></div>
+</div>
+<p>If SELinux is in enforcing mode execute the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ausearch<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;(ckups.sh)&#39;</span><span class="w"> </span>--raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>audit2allow<span class="w"> </span>-M<span class="w"> </span>my-ckupssh
+semodule<span class="w"> </span>-X<span class="w"> </span><span class="m">300</span><span class="w"> </span>-i<span class="w"> </span>my-ckupssh.pp
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to Eccles’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../baremetal/README.html" class="btn btn-neutral float-right" title="Bare Metal Installation Fedora Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Paul Hewlett.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
