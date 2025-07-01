@@ -42,7 +42,7 @@ cp asdf ~/bin
 chmod +x ~/bin/asdf
 ```
 
-and add the following to the end of ~/bin/.bashrc:
+and add the following to the end of ~/.bashrc:
 
 ```
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

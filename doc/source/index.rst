@@ -17,6 +17,7 @@ Welcome to Eccles's documentation!
    backups/README
    baremetal/README
    btrfs/README
+   desktop-tools/README
    macbookPro/README
    private-github/README
    proxmox/README
