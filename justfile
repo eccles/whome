@@ -4,7 +4,7 @@ name := "whome"
 #
 # show current available options
 default:
-	@just --list
+	@just --list --unsorted --justfile {{justfile()}} | grep -v default
 
 # Recreate build environment in docker image
 builder pyversion="3.12":

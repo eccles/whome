@@ -13,6 +13,7 @@ Welcome to Eccles's documentation!
    :maxdepth: 3
    :caption: Contents:
 
+   asdf/README
    backups/README
    baremetal/README
    btrfs/README

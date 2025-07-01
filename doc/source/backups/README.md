@@ -1,7 +1,7 @@
 # Backups
 
 This directory contains the necessary files to configure external
-backup disks that regularly backup the main storage filesytem
+backup disks that regularly backup the main storage filesystem
 to an external USB disk.
 
 The external backup disk has an encrypted partition that has a LABELLED filesystem.
@@ -104,7 +104,7 @@ Repeat
 backups.sh
 ```
 
-This second attempt should be musch quicker.
+This second attempt should be much quicker.
 
 Check that /Backup is unmounted after execution finishes.
 
