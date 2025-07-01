@@ -18,7 +18,7 @@ On each node:
    - Enable pcp in cockpit so that storage is monitored.
    - On your router, set the DHCP service to allocate the same IP to the same host.
    - Make a note of the hostname and IP address
-   - Reboot anod check all functions correctly.
+   - Reboot and check all functions correctly.
    - Install ssh key from your laptop such that passwordless login to the administrative user is enabled.
 
 ## Install k8s etc

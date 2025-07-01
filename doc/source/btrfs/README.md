@@ -8,7 +8,7 @@ This was successful except that Timeshift (as recommended by Willi) did not work
 Some feedback is here: https://github.com/wmutschl/mutschler.dev/issues/9
 
 Btrfs snapshot support is a very useful feature and this section details how
-snapshotting is setup using the snapper utlity. Please note snapper is incompatible with the snapshot
+snapshotting is setup using the snapper utility. Please note snapper is incompatible with the snapshot
 feature of the btrfsmaintenance package.
 
 Reference: http://snapper.io/tutorial.html
@@ -74,7 +74,7 @@ echo 'alias snapper="snapper -c home_$USER"' >> ~/.bash_aliases
 source ~/.bash_aliases
 ```
 
-The home snaphots should not require sudo:
+The home snapshots should not require sudo:
 
 ```bash
 snapper list

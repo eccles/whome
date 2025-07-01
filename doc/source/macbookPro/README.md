@@ -4,7 +4,7 @@ I have recently acquired a Macbook Pro vintage 2014 and installed Pop-OS on it.
 Unfortunately the wifi did not activate. After much googling and encountering many posts on 
 this issue that were confusing:
 
-- overcomplicated - one very helpful dev had the original OP recompile the kernel to try and solve this.
+- over complicated - one very helpful dev had the original OP recompile the kernel to try and solve this.
 - confusion about which software tools to install and what the actual cause was.
 
 ## Cause
