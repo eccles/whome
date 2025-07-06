@@ -19,6 +19,7 @@ Welcome to Eccles's documentation!
    btrfs/README
    desktop-tools/README
    macbookPro/README
+   msty/README
    private-github/README
    proxmox/README
    smart-home-server/README

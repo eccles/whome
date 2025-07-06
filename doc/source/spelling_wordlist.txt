@@ -22,6 +22,8 @@ eza
 fd
 formatter
 filesystem
+filesystems
+FStrim
 fuzzyfinder
 fzf
 gdu
@@ -29,6 +31,7 @@ gitconfig
 github
 golang
 hostname
+http
 https
 hyperfine
 initramfs
@@ -41,6 +44,7 @@ macbook
 macBook
 modprobe
 muschler
+msty
 ncdu
 nextcloud
 pam
@@ -53,6 +57,7 @@ podman
 postgres
 postgresql
 proxmox
+pve
 repo
 repos
 rg
