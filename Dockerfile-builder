@@ -1,15 +1,9 @@
-ARG VERSION=3.7
+ARG VERSION=3.12
 FROM python:${VERSION}-bullseye
 
 ARG NAME=whome
 ARG UID=1000
 
-# Note that any deps installed here must also be installed in the
-# github actions workflows:
-#
-#      .github/workflows/python-package.yml
-#      .github/workflows/python-publish.yml
-#
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
