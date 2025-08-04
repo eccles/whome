@@ -10,7 +10,7 @@ Welcome to Eccles's documentation!
    :parser: myst_parser.sphinx_
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
    asdf/README
@@ -18,6 +18,7 @@ Welcome to Eccles's documentation!
    baremetal/README
    btrfs/README
    desktop-tools/README
+   homedir/README
    macbookPro/README
    msty/README
    private-github/README

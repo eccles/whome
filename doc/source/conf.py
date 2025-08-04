@@ -11,8 +11,6 @@ copyright = '2025, Paul Hewlett'
 author = 'Paul Hewlett'
 release = '0.1.0'
 
-import sphinx_rtd_theme
-
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
