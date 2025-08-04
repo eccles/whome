@@ -11,6 +11,7 @@ Most desktop tools are installed using asdf and the corresponding file
 bat 0.25.0
 bats 1.12.0
 bottom 0.10.2
+delta 0.18.2
 dust 1.2.0
 eza 0.21.6
 fd 10.2.0
@@ -48,6 +49,26 @@ Bash Automated Testing system.
 Equivalent to the 'top' command.
 Also try installing 'btop' instead.
 
+## delta
+
+A fancy diffing tool that integrates with git.
+
+https://github.com/dandavison/delta
+
+$HOME/.gitconfig contains:
+
+```
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+[merge]
+	conflictStyle = zdiff3
+```
+
 ## dust
 
 Fancy disk usage tool.
@@ -76,6 +97,38 @@ Add the following line to ~/.bashrc
 
 ```
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+```
+
+and for history management:
+
+```
+alias h='cat ~/.bash_history | fzf | sh'
+```
+
+These 2 scripts are useful.
+
+View commit history:
+
+```bash
+#!/bin/bash
+commit=${1:-HEAD}
+git show --stat=120 --format="" "$commit" | \
+           grep '|' | \
+           fzf --ansi \
+               --disabled \
+               --bind 'j:down,k:up,q:abort' \
+               --preview="echo {} | sed 's/ *|.*//' | xargs -I% git show --color=always $commit -- %" \
+               --preview-window=right:60%
+```
+
+Inspect jq output:
+
+```bash
+#!/bin/bash
+
+printf '' | fzf --print-query \
+  --preview "jq -C {q} '$1' 2>&1" \
+  --preview-window=up:80%
 ```
 
 ## hyperfine

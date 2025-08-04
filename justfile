@@ -9,6 +9,7 @@ default:
 # Recreate build environment in docker image
 builder pyversion="3.12":
 	#!/usr/bin/env bash
+	docker image rm -f whome-builder
 	docker build \
 	       --build-arg VERSION="{{pyversion}}" \
 	       --build-arg NAME="{{name}}" \
@@ -20,6 +21,12 @@ builder pyversion="3.12":
 # shell into build environment
 shell:
 	./scripts/builder.sh /bin/bash
+
+# clean
+clean:
+	#!/usr/bin/env bash
+	docker image rm -f whome-builder
+	git clean -fdX
 
 # create doc
 doc:
