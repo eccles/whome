@@ -9,10 +9,10 @@ https://asdf-vm.com/guide/introduction.html.
 To install asdf execute this script:
 
 ```bash
-set -euxo pipefail
+set -euo pipefail
 cd ~/Downloads
 NAME=asdf
-VERSION=v0.18.0
+VERSION=v${1:-0.18.0}
 
 ARCH=$(uname -m)
 case "${ARCH}" in
@@ -100,8 +100,8 @@ zoxide 0.9.8
 and for a git repo that uses golang:
 
 ```
-golang 1.24.6		
-golangci-lint 2.3.1
+golang 1.25.1		
+golangci-lint 2.4.0
 just 1.42.4
 ```
 
@@ -112,3 +112,11 @@ Edit the appropriate .tool-versions file and execute
 ```bash
 asdf install
 ```
+
+Alternatively find the latest version of a tool and install it:
+
+```bash
+asdf install golang latest
+```
+
+Edit .tool-versions to use the new version.
