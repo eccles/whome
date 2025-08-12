@@ -67,7 +67,7 @@ To install a version of a plugin - usually 'latest' e.g.
 asdf install golang latest
 ```
 
-Note that for golang the following must be added to the .bashrc file:
+Note that for golang the following must be sourced in any repo that uses golang via asdf:
 
 ```
 . ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.bash
@@ -86,8 +86,6 @@ dust 1.2.0
 exa 0.10.1
 fd 10.2.0
 fzf 0.62.0
-golang 1.24.4
-just 1.40.0
 hyperfine 1.19.0
 lazygit 0.52.0
 neovim 0.11.2
@@ -97,15 +95,14 @@ shfmt 3.11.0
 starship 1.23.0
 tokei 12.1.2 
 zoxide 0.9.8
-nodejs 24.2.0
 ```
 
 and for a git repo that uses golang:
 
 ```
-golang 1.24.4		
-golangci-lint 2.1.6
-just 1.40.0
+golang 1.24.6		
+golangci-lint 2.3.1
+just 1.42.4
 ```
 
 ### Upgrading a tool

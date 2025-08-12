@@ -16,8 +16,6 @@ dust 1.2.0
 eza 0.21.6
 fd 10.2.0
 fzf 0.62.0
-golang 1.24.4
-just 1.40.0
 hyperfine 1.19.0
 lazygit 0.52.0
 ripgrep 14.1.1
@@ -26,7 +24,6 @@ shfmt 3.11.0
 starship 1.23.0
 tokei 12.1.2 
 zoxide 0.9.8
-nodejs 24.2.0
 ```
 
 ## bat
