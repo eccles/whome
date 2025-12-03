@@ -1,5 +1,5 @@
 #
-sphinx~=8.2
+sphinx~=9.0
 sphinx-rtd-theme~=3.0
 sphinxcontrib-spelling~=8.0
 sphinx-gallery~=0.19
